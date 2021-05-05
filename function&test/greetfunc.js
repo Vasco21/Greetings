@@ -4,9 +4,7 @@
         var names = '';
         var ONE = 1;
         var ZERO = 0;
-        var nameList = []
         var storedArray = []
-        var greetingsCounter = 0;
     // function that will pass the name with greetings
 
         function langON(languages, str) {
@@ -26,10 +24,11 @@
          *This method/function does the error handling in case of non slected language or and empty string for the name 
          *
          */
-        function checkErrors() {
-            if (names == ''){
+        function checkErrors(name,language) {
+            if (name == ''){
                 return 'Please pass a name'
-            } if (LanguageMsg == '' || LanguageMsg == undefined){
+            } 
+            if (language == '' || language == undefined){
                 return 'Please Select a Language'
             }
         }

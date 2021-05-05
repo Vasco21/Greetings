@@ -16,16 +16,20 @@ greetButton.addEventListener('click', function(){
     var namePerson = greetTextHolder.value
     
     if (!checkedlanguageElem && namePerson ==""){
-        errorMessage.innerHTML = "Please insert a name and Select a language!"
-    } if (!checkedlanguageElem){
+        errorMessage.innerHTML = "Please insert a name and Select a language!";
+        return ;
+    } 
+    if (!checkedlanguageElem){
         errorMessage.innerHTML = "Please Select a language!"
-    } if (namePerson == "" || !/[a-zA-z]$/.test(namePerson)) {
-        errorMessage.innerHTML = "insert your name not numbers or any characters"
+    } 
+    if (namePerson == "" || !/^[a-zA-Z_ ]*$/.test(namePerson)) {
+        errorMessage.innerHTML = "insert your name not numbers or any characters";
+        return;
     } 
     
     var checkedlanguage = checkedlanguageElem.value
     var personNameCapFirstLetter = greetLang.capFirstLetter(namePerson)
-    if (checkedlanguageElem && /[a-zA-z]$/.test(namePerson)){
+    if (checkedlanguageElem && /^[a-zA-Z_ ]*$/.test(namePerson)){
         
         greetLang.langON(checkedlanguage, personNameCapFirstLetter)
         greetText.innerHTML = greetLang.greetnames()
@@ -39,13 +43,17 @@ greetButton.addEventListener('click', function(){
         greetText.innerHTML = ""
     }, 5000)
     greetTextHolder.value = ""
-    
+    dispalyNames()
 })
 
 /**
  * This button event listener handles the display of names stored in the localStorage
  */
 listButton.addEventListener('click', function(){
+    dispalyNames()
+})
+
+function dispalyNames() {
     // Find a <table> element with id="myTable"
     var table = document.createElement("TABLE");
     table.border = "1";
@@ -67,8 +75,7 @@ listButton.addEventListener('click', function(){
     var dvTable = document.getElementById("namesList");
     dvTable.innerHTML = "";
     dvTable.appendChild(table);
-    
-})
+}
 
 restButton.addEventListener('click', function(){
     localStorage.clear()
