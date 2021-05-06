@@ -9,20 +9,26 @@ body{
     text-align: center;
     margin: 20%;
 }
+.err{
+    color: red;
+}
 h1{
     font-family:'Courier New', Courier, monospace;
     margin-bottom: 25px;
     color: cyan;
 }
 h3{
-    color: red;
+    color:#111;
 }
 .numberCounter{
     font-size: x-large;
-    color: red;
+    color:#111;
 }
 .la .greetTextHolder{
     font-size: large;
+}
+.greetText{
+    color: blue;
 }
 .la input{
     width: 30%;

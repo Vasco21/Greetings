@@ -54,7 +54,7 @@
             //Filter incomingName name in existing array on localstorage    
                let existingobject = storedArray.filter(x => x.name === incomingName)[ZERO]
                if(existingobject) {
-                   //Get index of object for later use after edit
+                   //Get index of object for latter use after edit
                     objectindex = storedArray.indexOf(existingobject)
                     //increment the existing count value
                     storedArray[objectindex].count = existingobject.count + ONE

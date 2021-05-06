@@ -17,19 +17,19 @@ greetButton.addEventListener('click', function(){
     
     if (!checkedlanguageElem && namePerson ==""){
         errorMessage.innerHTML = "Please insert a name and Select a language!";
-        return ;
+        return 
     } 
     if (!checkedlanguageElem){
         errorMessage.innerHTML = "Please Select a language!"
     } 
-    if (namePerson == "" || !/^[a-zA-Z_ ]*$/.test(namePerson)) {
-        errorMessage.innerHTML = "insert your name not numbers or any characters";
+    if (namePerson == "" || !/^[a-zA-Z]*$/.test(namePerson)) {
+        errorMessage.innerHTML = "insert your name not numbers or any characters!";
         return;
-    } 
+    }
     
     var checkedlanguage = checkedlanguageElem.value
     var personNameCapFirstLetter = greetLang.capFirstLetter(namePerson)
-    if (checkedlanguageElem && /^[a-zA-Z_ ]*$/.test(namePerson)){
+    if (checkedlanguageElem && /^[a-zA-Z]*$/.test(namePerson)){
         
         greetLang.langON(checkedlanguage, personNameCapFirstLetter)
         greetText.innerHTML = greetLang.greetnames()
@@ -43,7 +43,7 @@ greetButton.addEventListener('click', function(){
         greetText.innerHTML = ""
     }, 5000)
     greetTextHolder.value = ""
-    dispalyNames()
+    dispalyNames();
 })
 
 /**
