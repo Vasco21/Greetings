@@ -79,7 +79,9 @@ function dispalyNames() {
 
 restButton.addEventListener('click', function(){
     localStorage.clear()
+    alert("successfully reset your greetings page");
     location.reload()
+    
 });
 
 
