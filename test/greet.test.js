@@ -22,10 +22,10 @@ describe('The Greet with factory function' , function(){
     describe('Error handling in case of non slected language or and empty string for the name', function(){
         var greetFunc = greetLangRadio()
         var vascoName = "Vasco" 
-        // it('Should return "Please pass a name" if the string is empy for name', function(){
-        //   greetFunc.checkErrors()
-        //   assert.equal('Please pass a name', greetFunc.checkErrors() )
-        // })
+        it('Should return "Please pass a name" if the string is empy for name', function(){
+          greetFunc.checkErrors('', 'sesotho')
+          assert.equal('Please pass a name', greetFunc.checkErrors('', 'sesotho') )
+        })
 
         it('Should return "Please Select a Language" if the radio has not been selected', function(){
             var name = greetFunc.langON('english', vascoName)

@@ -6,7 +6,13 @@ var greetTextHolder = document.querySelector('.greetTextHolder')
 var count = document.querySelector('.numberCounter')
 var restButton = document.querySelector('.resetButton')
 var errorMessage = document.querySelector('.errorMessage')
+
+
+
 var storedNamesList = []
+
+//retrive the names from local storage
+
 
 var greetLang = greetLangRadio()
 
@@ -32,6 +38,7 @@ greetButton.addEventListener('click', function(){
     if (checkedlanguageElem && /^[a-zA-Z]*$/.test(namePerson)){
         
         greetLang.langON(checkedlanguage, personNameCapFirstLetter)
+        
         greetText.innerHTML = greetLang.greetnames()
         count.innerHTML = greetLang.nameLists(personNameCapFirstLetter)
     }
@@ -73,6 +80,7 @@ function dispalyNames() {
         cell2.innerHTML = storedNamesList[i].count;
     }
     var dvTable = document.getElementById("namesList");
+    //If you want to create a new paragraph, with text, remember to create the text as a Text node which you append to the paragraph, then append the paragraph to the document.
     dvTable.innerHTML = "";
     dvTable.appendChild(table);
 }

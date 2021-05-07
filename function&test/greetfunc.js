@@ -4,13 +4,13 @@
         var names = '';
         var ONE = 1;
         var ZERO = 0;
-        var storedArray = []
+        var storedArray =  []
     // function that will pass the name with greetings
 
         function langON(languages, str) {
             
             if (languages == 'english'){
-                LanguageMsg = 'Hello, '
+                LanguageMsg = 'Hello, ' 
             } if (languages == 'sesotho'){
                 LanguageMsg = 'Dumela, '
             } if (languages == 'isixhosa'){
@@ -42,7 +42,7 @@
         }
 
         /**
-         * This method handles the insert and updates of name objects being added to the program
+         * This method handles the insert and updates of name objects being added to the localstorage
          * @param {*} incomingName 
          * @returns {*} storedArray count
          */
@@ -51,7 +51,8 @@
             //Get existing array of objects in localStorage
             storedArray = JSON.parse(localStorage.getItem('NamesStored'));
             if(storedArray) {
-            //Filter incomingName name in existing array on localstorage    
+            //Filter incomingName name in existing array on localstorage
+            //creates an array filled with all array elements that pass a test (provided as a function).    
                let existingobject = storedArray.filter(x => x.name === incomingName)[ZERO]
                if(existingobject) {
                    //Get index of object for latter use after edit
