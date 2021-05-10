@@ -23,7 +23,7 @@ greetButton.addEventListener('click', function(){
     
     if (!checkedlanguageElem && namePerson ==""){
         errorMessage.innerHTML = "Please insert a name and Select a language!";
-        return 
+        return;
     } 
     if (!checkedlanguageElem){
         errorMessage.innerHTML = "Please Select a language!"
@@ -44,11 +44,11 @@ greetButton.addEventListener('click', function(){
     }
     setTimeout(function(){
         errorMessage.innerHTML = ""
-    }, 1000)
+    }, 2000)
     
     setTimeout(function(){
         greetText.innerHTML = ""
-    }, 5000)
+    }, 2000)
     greetTextHolder.value = ""
     dispalyNames();
 })
@@ -58,7 +58,7 @@ greetButton.addEventListener('click', function(){
  */
 listButton.addEventListener('click', function(){
     dispalyNames()
-})
+});
 
 function dispalyNames() {
     // Find a <table> element with id="myTable"
@@ -80,17 +80,28 @@ function dispalyNames() {
         cell2.innerHTML = storedNamesList[i].count;
     }
     var dvTable = document.getElementById("namesList");
-    //If you want to create a new paragraph, with text, remember to create the text as a Text node which you append to the paragraph, then append the paragraph to the document.
+    //create a new paragraph, with text, remember to create the text as a Text node which you append to the paragraph, then append the paragraph to the document.
     dvTable.innerHTML = "";
     dvTable.appendChild(table);
 }
+function done(){
 
-restButton.addEventListener('click', function(){
-    localStorage.clear()
-    alert("successfully reset your greetings page");
+    localStorage.clear();
     location.reload()
+   
+}
+restButton.addEventListener('click', function(){
+   
+
     
-});
+    var resetCheck = document.querySelector('.resetButton')
+        setTimeout(function(){
+            done()
+        }, 2000)
+        errorMessage.innerHTML = "You are successfuly reset a page!!!";
+        
+    
+},);
 
 
 
