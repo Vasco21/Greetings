@@ -53,35 +53,44 @@ greetButton.addEventListener('click', function(){
     
     if (!checkedlanguageElem && namePerson ==""){
         errorMessage.innerHTML = "Please insert a name and Select a language!";
+        errorMessageTimeout()
         return;
     } 
     if (!checkedlanguageElem){
         errorMessage.innerHTML = "Please Select a language!"
+        errorMessageTimeout()
+        return
     } 
     if (namePerson == "" || !/^[a-zA-Z]*$/.test(namePerson)) {
         errorMessage.innerHTML = "insert your name not numbers or any characters!";
+        errorMessageTimeout()
         return;
     }
-    
-    var checkedlanguage = checkedlanguageElem.value
-    var personNameCapFirstLetter = greetLang.capFirstLetter(namePerson)
-    if (checkedlanguageElem && /^[a-zA-Z]*$/.test(namePerson)){
-        
-        greetLang.langON(checkedlanguage, personNameCapFirstLetter)
-        
-        greetText.innerHTML = greetLang.greetnames()
-        count.innerHTML = nameLists(personNameCapFirstLetter)
+    if(checkedlanguageElem !== null) {
+        var checkedlanguage = checkedlanguageElem.value
+        var personNameCapFirstLetter = greetLang.capFirstLetter(namePerson)
+        if (checkedlanguageElem && /^[a-zA-Z]*$/.test(namePerson)){
+            
+            greetLang.langON(checkedlanguage, personNameCapFirstLetter)
+            
+            greetText.innerHTML = greetLang.greetnames()
+            count.innerHTML = nameLists(personNameCapFirstLetter)
+        }
     }
-    setTimeout(function(){
-        errorMessage.innerHTML = ""
-    }, 2000)
-    
+
     setTimeout(function(){
         greetText.innerHTML = ""
     }, 2000)
     greetTextHolder.value = ""
     dispalyNames();
 })
+
+function errorMessageTimeout() {
+    setTimeout(function(){
+        errorMessage.innerHTML = ""
+    }, 2000)
+}
+
 
 /**
  * This button event listener handles the display of names stored in the localStorage
@@ -97,22 +106,24 @@ function dispalyNames() {
     //Get localStorage list of names
     storedNamesList = JSON.parse(localStorage.getItem('NamesStored'));
     //Iterate through the list to create rows and cells
-    for (var i = 0; i < storedNamesList.length; i++) {
-        //Create an empty <tr> element and add it to the 1st position of the table
-        row = table.insertRow(-1);
-         //Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
-        var cell = row.insertCell(-1);
-        //Get current row name
-        cell.innerHTML = storedNamesList[i].name;
-        // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
-        var cell2 = row.insertCell(-1);
-        //Get current row count value
-        cell2.innerHTML = storedNamesList[i].count;
+    if(storedNamesList !== null) {
+        for (var i = 0; i < storedNamesList.length; i++) {
+            //Create an empty <tr> element and add it to the 1st position of the table
+            row = table.insertRow(-1);
+             //Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+            var cell = row.insertCell(-1);
+            //Get current row name
+            cell.innerHTML = storedNamesList[i].name;
+            // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+            var cell2 = row.insertCell(-1);
+            //Get current row count value
+            cell2.innerHTML = storedNamesList[i].count;
+        }
+        var dvTable = document.getElementById("namesList");
+        //create a new paragraph, with text, remember to create the text as a Text node which you append to the paragraph, then append the paragraph to the document.
+        dvTable.innerHTML = "";
+        dvTable.appendChild(table);
     }
-    var dvTable = document.getElementById("namesList");
-    //create a new paragraph, with text, remember to create the text as a Text node which you append to the paragraph, then append the paragraph to the document.
-    dvTable.innerHTML = "";
-    dvTable.appendChild(table);
 }
 function done(){
 
@@ -121,9 +132,6 @@ function done(){
    
 }
 restButton.addEventListener('click', function(){
-   
-
-    
     var resetCheck = document.querySelector('.resetButton')
         setTimeout(function(){
             done()
@@ -131,14 +139,11 @@ restButton.addEventListener('click', function(){
         errorMessage.innerHTML = "You are successfuly reset a page!!!";
         
     
-},);
+});
 
-
-
-
-
-
-
-
-
-
+window.onload = function() {
+    storedNamesList = JSON.parse(localStorage.getItem('NamesStored'));
+    if(storedNamesList !== null) {
+        count.innerHTML = storedNamesList.length;
+    }
+}

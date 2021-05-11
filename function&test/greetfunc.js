@@ -1,4 +1,4 @@
-  var greetLangRadio = function() {
+var greetLangRadio = function() {
     // creating varibale
         var LanguageMsg = '';
         var names = '';
