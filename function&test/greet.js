@@ -6,16 +6,46 @@ var greetTextHolder = document.querySelector('.greetTextHolder')
 var count = document.querySelector('.numberCounter')
 var restButton = document.querySelector('.resetButton')
 var errorMessage = document.querySelector('.errorMessage')
-
-
-
 var storedNamesList = []
 
 //retrive the names from local storage
-
-
 var greetLang = greetLangRadio()
 
+var ONE = 1;
+var ZERO = 0;
+var storedArray =  [];
+
+/**
+ * This method handles the insert and updates of name objects being added to the localstorage
+ * @param {*} incomingName 
+ * @returns {*} storedArray count
+ */
+function nameLists(incomingName) {
+    let objectindex;
+    //Get existing array of objects in localStorage
+    storedArray = JSON.parse(localStorage.getItem('NamesStored'));
+    if(storedArray) {
+    //Filter incomingName name in existing array on localstorage
+    //creates an array filled with all array elements that pass a test (provided as a function).    
+        let existingobject = storedArray.filter(x => x.name === incomingName)[ZERO]
+        if(existingobject) {
+            //Get index of object for latter use after edit
+            objectindex = storedArray.indexOf(existingobject)
+            //increment the existing count value
+            storedArray[objectindex].count = existingobject.count + ONE
+        } else {
+            storedArray.push({name : incomingName , count: ONE})
+        }
+    } else {
+        storedArray = []
+        storedArray.push({name : incomingName , count: ONE})
+        localStorage.setItem('NamesStored', JSON.stringify(storedArray))
+        return ONE
+    }
+    //Update NamesStored array in localstorage with new added data
+    localStorage.setItem('NamesStored', JSON.stringify(storedArray))
+    return storedArray.length
+}
 
 greetButton.addEventListener('click', function(){
     var checkedlanguageElem = document.querySelector("input[name='languageRadio']:checked")
@@ -40,7 +70,7 @@ greetButton.addEventListener('click', function(){
         greetLang.langON(checkedlanguage, personNameCapFirstLetter)
         
         greetText.innerHTML = greetLang.greetnames()
-        count.innerHTML = greetLang.nameLists(personNameCapFirstLetter)
+        count.innerHTML = nameLists(personNameCapFirstLetter)
     }
     setTimeout(function(){
         errorMessage.innerHTML = ""
@@ -102,6 +132,10 @@ restButton.addEventListener('click', function(){
         
     
 },);
+
+
+
+
 
 
 

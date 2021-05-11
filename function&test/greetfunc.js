@@ -2,9 +2,7 @@
     // creating varibale
         var LanguageMsg = '';
         var names = '';
-        var ONE = 1;
-        var ZERO = 0;
-        var storedArray =  []
+
     // function that will pass the name with greetings
 
         function langON(languages, str) {
@@ -22,7 +20,7 @@
         }
         /**
          *This method/function does the error handling in case of non slected language or and empty string for the name 
-         *
+         *@param {*} 
          */
         function checkErrors(name,language) {
             if (name == ''){
@@ -41,38 +39,6 @@
             return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
         }
 
-        /**
-         * This method handles the insert and updates of name objects being added to the localstorage
-         * @param {*} incomingName 
-         * @returns {*} storedArray count
-         */
-        function nameLists(incomingName) {
-            let objectindex;
-            //Get existing array of objects in localStorage
-            storedArray = JSON.parse(localStorage.getItem('NamesStored'));
-            if(storedArray) {
-            //Filter incomingName name in existing array on localstorage
-            //creates an array filled with all array elements that pass a test (provided as a function).    
-               let existingobject = storedArray.filter(x => x.name === incomingName)[ZERO]
-               if(existingobject) {
-                   //Get index of object for latter use after edit
-                    objectindex = storedArray.indexOf(existingobject)
-                    //increment the existing count value
-                    storedArray[objectindex].count = existingobject.count + ONE
-                } else {
-                    storedArray.push({name : incomingName , count: ONE})
-               }
-            } else {
-                storedArray = []
-                storedArray.push({name : incomingName , count: ONE})
-                localStorage.setItem('NamesStored', JSON.stringify(storedArray))
-                return ONE
-            }
-            //Update NamesStored array in localstorage with new added data
-            localStorage.setItem('NamesStored', JSON.stringify(storedArray))
-            return storedArray.length
-        }
-
     // function that pass lang and the name
         function greetnames(){
             return LanguageMsg + names
@@ -83,7 +49,6 @@
             greetnames,
             langON,
             checkErrors,
-            nameLists,
             capFirstLetter
         }
     }
