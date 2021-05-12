@@ -65,25 +65,7 @@ describe('The Greet with factory function' , function(){
             assert.equal('Molweni, Vasco', greetFunc.greetnames())
         });
     });
-
-    describe('Counter for the names in the localstorage', function(){
-        var greetFunc = greetLangRadio()
-        it('Should return the counter for the supplied values', function(){
-            localStorage.clear()
-            var count = 0
-            count = greetFunc.nameLists('Vasco')
-            count = greetFunc.nameLists('Peter')
-            count =  greetFunc.nameLists('James')
-            count =  greetFunc.nameLists('Peterson') 
-            count =  greetFunc.nameLists('Vasco')
-            count =  greetFunc.nameLists('Peter') 
-            count =  greetFunc.nameLists('James')
-            count =  greetFunc.nameLists('Peterson')
-            assert.equal(4, count)
-        });
-    });
-
-
+    
 });
 
 

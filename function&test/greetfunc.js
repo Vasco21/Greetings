@@ -43,12 +43,10 @@ var greetLangRadio = function() {
         function greetnames(){
             return LanguageMsg + names
         }
-
-    
         return {
             greetnames,
             langON,
             checkErrors,
-            capFirstLetter
+            capFirstLetter,     
         }
     }
