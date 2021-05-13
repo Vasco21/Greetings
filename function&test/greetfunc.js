@@ -47,22 +47,18 @@ var greetLangRadio = function() {
         function capFirstLetter(str) {
             return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
         }
-
-    // function that pass lang and the name
         function greetnames(){
             return LanguageMsg + names
         }
-        //Getting the local object
-    function getlocal(){
+        function getlocal(){
         return local
-    }
-
-    function getCounter(){
+        }
+        function getCounter(){
         return counter
-    }
-    function setlocal(AllNames){
+        }
+        function setlocal(AllNames){
         local = AllNames
-    }
+        }
 
         return {
             greetnames,
