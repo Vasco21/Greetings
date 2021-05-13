@@ -57,7 +57,7 @@ greetButton.addEventListener('click', function(){
         return;
     } 
     if (!checkedlanguageElem){
-        errorMessage.innerHTML = "Please Select a language!"
+        errorMessage.innerHTML = "Please Select a language!";
         errorMessageTimeout()
         return
     } 
@@ -79,16 +79,16 @@ greetButton.addEventListener('click', function(){
     }
 
     setTimeout(function(){
-        greetText.innerHTML = ""
-    }, 2000)
-    greetTextHolder.value = ""
+        greetText.innerHTML = "";
+    }, 5000)
+    greetTextHolder.value = "";
     dispalyNames();
 })
 
 function errorMessageTimeout() {
     setTimeout(function(){
-        errorMessage.innerHTML = ""
-    }, 2000)
+        errorMessage.innerHTML = "";
+    }, 5000)
 }
 
 
@@ -135,7 +135,7 @@ restButton.addEventListener('click', function(){
     var resetCheck = document.querySelector('.resetButton')
         setTimeout(function(){
             done()
-        }, 2000)
+        }, 5000)
         errorMessage.innerHTML = "You are successfuly reset a page!!!";
         
     

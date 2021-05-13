@@ -2,11 +2,21 @@ var greetLangRadio = function() {
     // creating varibale
         var LanguageMsg = '';
         var names = '';
+        var counter = 0;
+        var local = {};
 
     // function that will pass the name with greetings
-
         function langON(languages, str) {
+            if (local[languages] === undefined) {
+                local[languages] = 0;
+                counter++
             
+            } 
+            //If the name is there just increment the value
+            else{
+                local[languages]++;
+            }
+
             if (languages == 'english'){
                 LanguageMsg = 'Hello, ' 
             } if (languages == 'sesotho'){
@@ -15,8 +25,7 @@ var greetLangRadio = function() {
                 LanguageMsg = 'Molweni, '
             }
             
-            names = str
-            
+            names = str;   
         }
         /**
          *This method/function does the error handling in case of non slected language or and empty string for the name 
@@ -24,13 +33,13 @@ var greetLangRadio = function() {
          */
         function checkErrors(name,language) {
             if (name == ''){
-                return 'Please pass a name'
+                return 'Please pass a name';
             } 
             if (language == '' || language == undefined){
-                return 'Please Select a Language'
+                return 'Please Select a Language';
             }
         }
-    
+       
         /**
          * This method/function uppercases the first charater of the string and lowercases the rest of the charaters
          * @param {*} str 
@@ -43,10 +52,25 @@ var greetLangRadio = function() {
         function greetnames(){
             return LanguageMsg + names
         }
+        //Getting the local object
+    function getlocal(){
+        return local
+    }
+
+    function getCounter(){
+        return counter
+    }
+    function setlocal(AllNames){
+        local = AllNames
+    }
+
         return {
             greetnames,
             langON,
             checkErrors,
-            capFirstLetter,     
+            capFirstLetter,
+            getCounter,  
+            getlocal,
+            setlocal 
         }
     }

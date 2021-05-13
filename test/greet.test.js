@@ -13,7 +13,7 @@ describe('The Greet with factory function' , function(){
             greetFunc.langON('sesotho', etiName)
             assert.equal('Dumela, Eti', greetFunc.greetnames())
         })
-        it('Should return the name greated in xhosa and add', function(){
+        it('Should return the name greated in Isixhosa and add', function(){
             greetFunc.langON('isixhosa', eddieName)
             assert.equal('Molweni, Eddie', greetFunc.greetnames())
         });
@@ -60,12 +60,41 @@ describe('The Greet with factory function' , function(){
 
             assert.equal('Dumela, Vasco', greetFunc.greetnames())
         })
-        it('Should return the name greated in Xhosa', function(){
+        it('Should return the name greated in Isixhosa', function(){
             greetFunc.langON('isixhosa', vascoName)
             assert.equal('Molweni, Vasco', greetFunc.greetnames())
         });
     });
     
+    describe('counter for name', function(){
+    it('Should increment counter for each different name greeted', function () {
+        var greetFunc = greetLangRadio()
+        greetFunc.langON('Vasco','English');
+        greetFunc.langON('Motlaks','Sesotho');
+        greetFunc.langON('Eddie','Isixhosa');
+       
+        assert.equal(3,greetFunc.getCounter());
+    });
+  
+    it('Should not increment counter if the name has been greeted even if you greet in different language', function () {
+        var greetFunc = greetLangRadio()
+        greetFunc.langON('Vasco','English');
+        greetFunc.langON('Vasco','Sesotho');
+        greetFunc.langON('Vasco','Isixhosa');
+        greetFunc.langON('Eddie','English');
+        greetFunc.langON('Eddie','Sesotho');
+        greetFunc.langON('Eddie','Isixhosa');
+        greetFunc.langON('Eti','English');
+        greetFunc.langON('Eti','Sesotho');
+        greetFunc.langON('Eti','Isixhosa');
+        greetFunc.langON('Tebogo','English');
+        greetFunc.langON('Tebogo','Sesotho');
+        greetFunc.langON('Tebogo','Isixhosa');
+       
+        assert.equal(4,greetFunc.getCounter());
+        });
+    })
+
 });
 
 
